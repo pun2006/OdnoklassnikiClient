@@ -43,6 +43,11 @@ final class Token implements ObjectInitializedInterface {
     private $refreshToken = '';
 
     /**
+     * 
+     * @var integer expires
+     */
+    private $expires = '';
+    /**
      * @var string token type
      */
     private $tokenType = self::TYPE_NONE;
@@ -124,6 +129,9 @@ final class Token implements ObjectInitializedInterface {
         if (isset($Object->refresh_token)) {
             $Token->setRefreshToken($Object->refresh_token);
         }
+        if (isset($Object->expires_in)) {
+            $Token->setExpires($Object->expires_in);
+        }
         return $Token;
     }
 
@@ -139,16 +147,37 @@ final class Token implements ObjectInitializedInterface {
             ->setTokenType($Token->getTokenType());
         return $this;
     }
+    
+    
 
     public function __toString() {
         $format = <<<'EOD'
     access token:  %s
     refresh token: %s
     token type:    %s
+    expires_in:    %s
 EOD;
         return sprintf($format
             , $this->getAccessToken()
             , $this->getRefreshToken()
-            , $this->getTokenType());
+            , $this->getTokenType()
+            , $this->getExpires());
     }
+   
+    /**
+     * @return number
+     */
+    public function getExpires()
+    {
+        return $this->expires;
+    }
+
+    /**
+     * @param number $expires
+     */
+    public function setExpires($expires)
+    {
+        $this->expires = $expires;
+    }
+
 }
