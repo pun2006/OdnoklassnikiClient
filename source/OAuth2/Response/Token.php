@@ -33,22 +33,22 @@ final class Token implements ObjectInitializedInterface {
           TYPE_SESSION = 'session';
 
     /**
-     * @var string access token
+     * @var string access_token
      */
     private $accessToken = '';
 
     /**
-     * @var string refresh token
+     * @var string refresh_token
      */
     private $refreshToken = '';
 
     /**
      * 
-     * @var integer expires
+     * @var integer expires_in
      */
     private $expires = '';
     /**
-     * @var string token type
+     * @var string token_type
      */
     private $tokenType = self::TYPE_NONE;
 
